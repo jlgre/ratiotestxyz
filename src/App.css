@@ -1,38 +1,99 @@
+
 .App {
-  text-align: center;
+    background-color: #222222;
+    padding: 10px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App-content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    border: 3px solid #eeeeee;
+    padding: 40px;
+    text-align: center;
+    min-height: 98vh;
+    background-color: #282c34;
+    color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.App-ticker {
+    font-size: 20px;
+    width: 70%;
+    margin: auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.App-content h1{
+    padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.App-footer {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+footer{
+    bottom: 0;
+    position: fixed;
+    width: 100%;
+    padding: 10px;
 }
+
+footer a {
+    color: #cccccc;
+}
+
+footer a:hover {
+    color: #ffffff;
+}
+
+.App-p-small{
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: #6c757d;
+    width: 45%;
+}
+
+.summand {
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-bottom: 10px;
+    margin: auto;
+}
+
+.result {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+/* .App-header { */
+/*     align-items: center; */
+/*     justify-content: center; */
+/*     font-size: calc(10px + 2vmin); */
+/* } */
+
+/* .App-link { */
+/*   color: #61dafb; */
+/* } */
+
+/* .App-body{ */
+/*     background-color: #282c34; */
+/*     min-height: 100vh; */
+/*     display: flex; */
+/*     flex-direction: column; */
+/*     align-items: left; */
+/*     justify-content: left; */
+/*     font-size: calc(10px + 2vmin); */
+/*     text-align: left; */
+/*     color: white; */
+/* } */
+
+/* .App p{ */
+/*     text-align: center; */
+/* } */
+
+/* .App h{ */
+/*     padding: 20px; */
+/* } */
