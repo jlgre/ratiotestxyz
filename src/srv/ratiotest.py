@@ -16,47 +16,52 @@ n= symbols('n')
 
 
 # list of accpectable characters
-ops=['+','-','*','/','(',')']#,'^','!'] # let's start with these and later we can add e,pi,sin,cos,log
+ops=['+','-','*','/','(',')']#,'^','!'] # let's start with these also, ** is exponentiation
 nums=['1','2','3','4','5','6','7','8','9','0','.']
 var='n'
 #par=['(',')']
-words=[' ','factorial','sin','cos','exp','ln','pi']# we can change these to be consistent with sympy
+words=['factorial','sin','cos','exp','ln']# 
 
 def filter(summand):
     '''
-        checks that there are only acceptable characters
-        returns indices of first unnacceptable word or
-        returns True if they're all good
+    checks that there are only acceptable characters
+    returns indices of first unnacceptable word or
+    returns True if they're all good
     '''
-    sx = summand
-    if 'x' in sx:
-        return 'x'
-    else:
-        '''
-        changes all the acceptable characters to 'x'
-	the order is important. Like if you changed the n's first, 
-	then sin would be si which is not acceptable
-        '''
-        for s in words:
-            if s in sx:
-                sx=sx.replace(s,'x'*len(s))
-        for s in ops:
-            if s in sx:
-                sx=sx.replace(s,'x'*len(s))
-        for s in nums:
-            if s in sx:
-                sx=sx.replace(s,'x'*len(s))
-        for s in var:
-            if s in sx:
-                sx=sx.replace(s,'x'*len(s))
-        # if any characters have not been changed, they are not acceptable
-        for i in range(0,len(sx)):
-                if sx[i] != 'x':
-                    j=i
-                    while sx[j] != 'x':
-                        j=j+1
-                    return [i,j]
-        return True
+    sx = summand+' '
+#    if 'x' in sx:
+#        return 'x'
+#    else:
+    '''
+    changes all the acceptable characters to ' '
+    the order is important. Like if you deleted the 'n's first, 
+    then 'sin' would be 'si ' which is not acceptable.
+    also, if you just deleted the acceptable characters, 
+    then 'csinosins' would be acceptable.
+    '''
+    for s in words:
+        if s in sx:
+            sx=sx.replace(s,' ')
+    for s in ops:
+        if s in sx:
+            sx=sx.replace(s,' ')
+    for s in nums:
+        if s in sx:
+            sx=sx.replace(s,' ')
+    for s in var:
+        if s in sx:
+            sx=sx.replace(s,' ')
+    # at this point sx is only spaces and unnacceptable words
+    # find the first non-space and return until there is a space
+    for i in range(0,len(sx)):
+        if sx[i] != ' ':
+            j=i
+            err=''
+            while sx[j] != ' ':
+                err=err+sx[j]
+                j=j+1
+            return err #returns first unnacceptable word
+    return True
 
 
 
@@ -88,10 +93,10 @@ def ratio():
             else:
                 return[0,res]
     else:
-        errorMessage = seq+'\n' + ' '*f[0]+'^'*(f[1]-f[0]) # underlines first unnaceptable phrase
+        errorMessage = '"'+f+'"'+' is not an acceptable word/character'
         return [2,errorMessage]
 
-
+print(ratio())
 #@app.route('/ratioTest', methods = ['POST', 'GET'])
 #def run():
 #        print(request.args['summand'], file=sys.stdout)
