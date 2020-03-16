@@ -77,7 +77,7 @@ def ratio(summand):
             # this doesn't work if its a nonsensical math statement like n+*5
             seq=sympify(seq)
         except SympifyError as inst:
-            errorMessage = [type(inst),inst.args]
+            errorMessage = inst.args[0]
             return [1, errorMessage]
         else:
             # computes the ratio and limit
@@ -113,6 +113,7 @@ def run():
                        num = float(res[1])
         )
     elif res[0] == 1 or res[0] == 2:
+        print(res[1], file=sys.stdout)
         return jsonify(result = res[1],
                        num = 'Error:'
         )
@@ -120,4 +121,3 @@ def run():
 
 if __name__ == '__main__':
     app.run(host = '0.0.0.0', port=8000)
-
