@@ -78,14 +78,14 @@ def ratio(summand):
             seq=sympify(seq)
         except SympifyError as inst:
             errorMessage = [type(inst),inst.args]
-            return [1,errorMessage]
+            return [1, errorMessage]
         else:
             # computes the ratio and limit
             res=limit(seq/seq.subs(n,n-1),n,oo)
             return[0,res]
     else:
-        errorMessage = '"'+f+'"'+' is not an acceptable word/character'
-        return [2,errorMessage]
+        errorMessage = 'Parse error: \'' + f + '\' is not acceptable input'
+        return [2, errorMessage]
 
 
 @app.route('/ratioTest', methods=['POST', 'GET'])
