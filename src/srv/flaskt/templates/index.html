@@ -16,6 +16,10 @@
 </div>
 
 <div>
-<a href="/testimonial/">Tell us your story</a>
+    <h1>Testimonials</h1>
+    {% for test in tests %}
+        <p>{{ test.content }}</p>
+    {% endfor %}
+    <p><a href="/testimonial/">Tell us your story</a></p>
 </div>
 {% endblock %}

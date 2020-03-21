@@ -96,10 +96,11 @@ class Testimonial(db.Model):
     author = db.Column(db.String(50))
 
     def __repr__(self):
-        return '<Task %r>' %self.id
+        return '<Testimonial %r>' %self.id
 
 @app.route('/', methods=['POST','GET'])
 def index():
+    tests = Testimonial.query.order_by(Testimonial.date_created).all()
     summand=''
     message='waiting...'
     if request.method == 'POST':
@@ -112,12 +113,12 @@ def index():
                 message = 'Ratio=' + str(result[1]) + '. Test inconclusive.'
             else:
                 message = 'Ratio=' + str(result[1]) + '. Series diverges.'
-            return render_template('index.html', message=message, oldsum=summand)
+            return render_template('index.html', message=message, oldsum=summand, tests=tests)
         else:
             message = result[1]
-            return render_template('index.html', message=message, summand=summand)
+            return render_template('index.html', message=message, summand=summand, tests=tests)
     else:
-        return render_template('index.html', message=message, summand=summand)
+        return render_template('index.html', message=message, summand=summand, tests=tests)
 
 @app.route('/testimonial/', methods=['POST','GET'])
 def testimonial():
@@ -130,7 +131,7 @@ def testimonial():
             db.session.commit()
             return redirect('/')
         except:
-            return 'problem adding your story'
+            return 'Error 405'
     else:
         return render_template('testimonial.html')
 
