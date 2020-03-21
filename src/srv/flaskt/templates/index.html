@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+<div>
+    <h1>Ratio Test</h1>
+    <h2>Enter Summand</h2>
+    <form action="/" method="POST">
+       <input type="text" name="summand" id="summand" value="{{ oldsum }}">
+       <input type="submit" value="Compute">
+    </form>
+    <h2>{{ message }}</h2>
+</div>
+
+<div>
+<a href="/testimonial/">Tell us your story</a>
+</div>
+{% endblock %}
