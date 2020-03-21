@@ -98,6 +98,7 @@ class Testimonial(db.Model):
     def __repr__(self):
         return '<Testimonial %r>' %self.id
 
+
 @app.route('/', methods=['POST','GET'])
 def index():
     tests = Testimonial.query.order_by(Testimonial.date_created).all()
@@ -113,7 +114,7 @@ def index():
                 message = 'Ratio=' + str(result[1]) + '. Test inconclusive.'
             else:
                 message = 'Ratio=' + str(result[1]) + '. Series diverges.'
-            return render_template('index.html', message=message, oldsum=summand, tests=tests)
+            return render_template('index.html', message=message, summand=summand, tests=tests)
         else:
             message = result[1]
             return render_template('index.html', message=message, summand=summand, tests=tests)
