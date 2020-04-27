@@ -23,9 +23,9 @@ class Summand extends React.Component {
     }
 
     handleSubmit(event) {
-        let url = 'https://api.lukegreen.xyz/ratioTest?';
+        // let url = 'https://api.lukegreen.xyz/ratioTest?';
         // This is test url for local python server
-        // let url = 'http://localhost:8000/ratioTest?';
+        let url = 'http://localhost:8000/ratioTest?';
 
         const summand = this.state.value;
         const escapedSummand = 'summand=' + encodeURIComponent(summand);
