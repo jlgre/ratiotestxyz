@@ -81,7 +81,17 @@ def ratio(summand):
             return [1, errorMessage]
         else:
             # computes the ratio and limit
-            res=limit(seq/seq.subs(n,n-1),n,oo)
+            print("Simplifying the ratio...",file=sys.stdout)
+            ratio=simplify(seq/seq.subs(n,n-1))
+            print("Ratio =", ratio, file=sys.stdout)
+            print("Computing the Limit...",file=sys.stdout)
+            res=limit(abs(ratio),n,oo)
+            if isinstance(res, Limit):
+                errorMessage='Limit could not be computed by sympy, probably because it does not exist.'
+                return[3,errorMessage]
+            print("Limit Computed =", res, file=sys.stdout)
+            if res == oo:
+                res=99999999999999
             return[0,res]
     else:
         errorMessage = 'Parse error: \'' + f + '\' is not acceptable input'
@@ -112,7 +122,7 @@ def run():
         return jsonify(result = message,
                        num = float(res[1])
         )
-    elif res[0] == 1 or res[0] == 2:
+    elif res[0] == 1 or res[0] == 2 or res[0] == 3:
         print(res[1], file=sys.stdout)
         return jsonify(result = res[1],
                        num = 'Error:'
